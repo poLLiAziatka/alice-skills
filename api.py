@@ -8,19 +8,19 @@ import logging
 
 # Импортируем подмодули Flask для запуска веб-сервиса.
 from flask import Flask, request
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 logging.basicConfig(level=logging.DEBUG)
 
 # Хранилище данных о сессиях.
 sessionStorage = {}
 
+
 # Задаем параметры приложения Flask.
 @app.route("/", methods=['POST'])
-
 def main():
-# Функция получает тело запроса и возвращает ответ.
+    # Функция получает тело запроса и возвращает ответ.
     logging.info('Request: %r', request.json)
 
     response = {
@@ -40,6 +40,7 @@ def main():
         ensure_ascii=False,
         indent=2
     )
+
 
 # Функция для непосредственной обработки диалога.
 def handle_dialog(req, res):
@@ -77,6 +78,7 @@ def handle_dialog(req, res):
         req['request']['original_utterance']
     )
     res['response']['buttons'] = get_suggests(user_id)
+
 
 # Функция возвращает две подсказки для ответа.
 def get_suggests(user_id):
